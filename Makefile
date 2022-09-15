@@ -8,7 +8,7 @@ main: main.cpp
 	$(CC) -g -march=native -o $@ $^ -I$(IDIR) -L$(LDIR) -ffast-math -fopenmp -labbie -lOpenCL -lchess -lbenBrain -lbenMat
 
 opt: main.cpp
-	$(CC) -O3 -march=native -o $@ $^ -I$(IDIR) -L$(LDIR) -ffast-math -fopenmp -labbieOpt -lOpenCL -lchess -lbenBrainOpt -lbenMatOpt
+	$(CC) -O3 -march=native -o $@ $^ -I$(IDIR) -L$(LDIR) -ffast-math -fopenmp -labbieOpt -lOpenCL -lchessOpt -lbenBrainOpt -lbenMatOpt
 .PHONY: all
 all:
 	make main

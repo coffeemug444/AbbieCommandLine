@@ -27,22 +27,6 @@ bool getTrainingMode() {
    }
 }
 
-void train5Epochs(int epocLength, int gameNumber) {
-   int i = gameNumber;
-   Abbie bot(getModelString(i));
-
-   while (i <= gameNumber + 5*epocLength)
-   {
-      i++;
-      std::cout << "Game " << i;
-      std::cout << "\033[F\33[2K\033[F\33[2K\033[F\33[2K\033[F\33[2K";
-      bot.trainOneGame();
-      if (i % epocLength == 0)  {
-         bot.saveModel(getModelString(i));
-      }
-   }
-}
-
 int findModelMumber() {
    std::string path = "models";
    std::vector<int> iterations;
@@ -86,14 +70,19 @@ int main(int argc, char**argv) {
 
    if ( training_mode ) {
       Board board;
+      Abbie bot(getModelString(i));
       
-      int epoch_length = 100;
+      int epoch_length = 500;
+      std::cout<< "\n";
 
-      std::cout << "\n\n\n\n";
-
-      while(true) {
-         train5Epochs(epoch_length, i);
-         i += 5*epoch_length;
+      while (true)
+      {
+         i++;
+         std::cout << "Game " << i;
+         bot.trainOneGame();
+         if (i % epoch_length == 0)  {
+            bot.saveModel(getModelString(i));
+         }
       }
    } else {
       Abbie bot(getModelString(i));
